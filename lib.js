@@ -15,6 +15,12 @@ class Coordinate {
     mul(num) {
 	return new Coordinate(this.x * num, this.y * num);
     }
+
+    distance(that) {
+	const dx = this.x - that.x;
+	const dy = this.y - that.y;
+	return Math.hypot(dx, dy);
+    }
 }
 
 function random(min, max) {
@@ -23,6 +29,15 @@ function random(min, max) {
 
 function range(length, start = 0) {
     return [...Array(length).keys()].map(i => i + start);
+}
+
+function closestMultiple(target, num) {
+    if (num > target) {
+	return num;
+    }
+    
+    target = target + parseInt(num / 2, 10);
+    return target - (target % num);
 }
 
 const Direction = {
